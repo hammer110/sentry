@@ -411,7 +411,7 @@ const projectSettingsRoutes = (
       path="integrations/:providerKey/"
       name="Integration Configuration"
       componentPromise={() =>
-        import(/* webpackChunkName: "OrganizationIntegrationConfig" */ './views/organizationIntegrationConfig')}
+        import(/* webpackChunkName: "OrganizationIntegrations" */ './views/organizationIntegrations')}
       component={errorHandler(LazyLoad)}
     />
     <Route
