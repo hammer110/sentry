@@ -2,10 +2,10 @@
 import React from 'react';
 import {mount, shallow} from 'enzyme';
 
-import OrganizationIntegrationConfig from 'app/views/organizationIntegrationConfig';
+import OrganizationIntegration from 'app/views/organizationIntegration';
 import {Client} from 'app/api';
 
-describe('OrganizationIntegrationConfig', function() {
+describe('OrganizationIntegration', function() {
   beforeEach(function() {
     Client.clearMockResponses();
   });
@@ -34,7 +34,7 @@ describe('OrganizationIntegrationConfig', function() {
 
       it('Displays an empty list', function() {
         const wrapper = shallow(
-          <OrganizationIntegrationConfig params={params} />,
+          <OrganizationIntegration params={params} />,
           routerContext
         );
         expect(wrapper.find('PanelBody EmptyMessage').exists()).toBe(true);
@@ -43,7 +43,7 @@ describe('OrganizationIntegrationConfig', function() {
       it('Displays an error for an invalid provider key', function() {
         const invalidKeyParams = {...params, providerKey: 'bad-key'};
         const wrapper = shallow(
-          <OrganizationIntegrationConfig params={invalidKeyParams} />,
+          <OrganizationIntegration params={invalidKeyParams} />,
           routerContext
         );
         expect(wrapper).toMatchSnapshot();
@@ -63,18 +63,12 @@ describe('OrganizationIntegrationConfig', function() {
       });
 
       it('renders', function() {
-        const wrapper = mount(
-          <OrganizationIntegrationConfig params={params} />,
-          routerContext
-        );
+        const wrapper = mount(<OrganizationIntegration params={params} />, routerContext);
         expect(wrapper).toMatchSnapshot();
       });
 
       it('opens a dialog on integration add', function() {
-        const wrapper = mount(
-          <OrganizationIntegrationConfig params={params} />,
-          routerContext
-        );
+        const wrapper = mount(<OrganizationIntegration params={params} />, routerContext);
 
         const focus = jest.fn();
         const open = jest.fn().mockReturnValue({focus});
@@ -89,10 +83,7 @@ describe('OrganizationIntegrationConfig', function() {
       });
 
       it('Adds an integration on dialog completion', function() {
-        const wrapper = mount(
-          <OrganizationIntegrationConfig params={params} />,
-          routerContext
-        );
+        const wrapper = mount(<OrganizationIntegration params={params} />, routerContext);
 
         wrapper.instance().receiveMessage({
           source: null,
@@ -113,10 +104,7 @@ describe('OrganizationIntegrationConfig', function() {
       });
 
       it('Merges existing integrations', function() {
-        const wrapper = mount(
-          <OrganizationIntegrationConfig params={params} />,
-          routerContext
-        );
+        const wrapper = mount(<OrganizationIntegration params={params} />, routerContext);
 
         const updatedIntegration = {
           id: '1',
@@ -140,10 +128,7 @@ describe('OrganizationIntegrationConfig', function() {
       });
 
       it('Deletes an integration', function() {
-        const wrapper = mount(
-          <OrganizationIntegrationConfig params={params} />,
-          routerContext
-        );
+        const wrapper = mount(<OrganizationIntegration params={params} />, routerContext);
 
         Client.addMockResponse({
           url: `/organizations/${org.slug}/integrations/${integration.id}/`,
