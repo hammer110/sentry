@@ -29,7 +29,7 @@ const getRateLimitValues = () => {
 // We can just generate this once
 const ACCOUNT_RATE_LIMIT_VALUES = getRateLimitValues();
 
-class RateLimitView extends React.Component {
+export default class OrganizationRateLimit extends React.Component {
   static propTypes = {
     organization: PropTypes.object.isRequired,
   };
@@ -135,5 +135,3 @@ class RateLimitView extends React.Component {
     );
   }
 }
-
-export default RateLimitView;
