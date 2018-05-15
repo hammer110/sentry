@@ -523,7 +523,7 @@ function routes() {
           name="Team"
           path=":teamId/"
           componentPromise={() =>
-            import(/*webpackChunkName: TeamDetails*/ './views/settings/teamDetails')}
+            import(/*webpackChunkName: TeamDetails*/ './views/settings/organizationTeams/teamDetails')}
           component={errorHandler(LazyLoad)}
         >
           <IndexRedirect to="members/" />
@@ -531,21 +531,21 @@ function routes() {
             path="members/"
             name="Members"
             componentPromise={() =>
-              import(/*webpackChunkName: TeamMembers*/ './views/settings/teamMembers')}
+              import(/*webpackChunkName: TeamMembers*/ './views/settings/organizationTeams/teamMembers')}
             component={errorHandler(LazyLoad)}
           />
           <Route
             path="projects/"
             name="Projects"
             componentPromise={() =>
-              import(/*webpackChunkName: TeamProjects*/ './views/settings/teamProjects')}
+              import(/*webpackChunkName: TeamProjects*/ './views/settings/organizationTeams/teamProjects')}
             component={errorHandler(LazyLoad)}
           />
           <Route
             path="settings/"
             name="settings"
             componentPromise={() =>
-              import(/*webpackChunkName: TeamSettings*/ './views/settings/teamSettings')}
+              import(/*webpackChunkName: TeamSettings*/ './views/settings/organizationTeams/teamSettings')}
             component={errorHandler(LazyLoad)}
           />
         </Route>
