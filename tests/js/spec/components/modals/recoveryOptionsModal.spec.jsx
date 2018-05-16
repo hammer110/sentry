@@ -19,18 +19,27 @@ describe('RecoveryOptionsModal', function() {
 
   afterEach(function() {});
 
-  it('shows recovery code button if user skips backup phone setup', async function() {
+  it('get recovery codes if user skips backup phone setup', async function() {
     let wrapper = mount(
       <RecoveryOptionsModal
         Body={Modal.Body}
         Header={Modal.Header}
-        authenticatorName="Text Message"
+        authenticatorName="Authenticator App"
         closeModal={closeModal}
         onClose={onClose}
       />,
       TestStubs.routerContext()
     );
+    expect(
+      wrapper.find('RecoveryOptionsModal Button[name="addPhone"]').prop('to')
+    ).toMatch('/settings/account/security/sms/enroll/');
+
     wrapper.find('RecoveryOptionsModal Button[name="skipStep"]').simulate('click');
     wrapper.find('RecoveryOptionsModal Button[name="getCodes"]').simulate('click');
+
+    let mockId = 16;
+    expect(
+      wrapper.find('RecoveryOptionsModal Button[name="getCodes"]').prop('to')
+    ).toMatch(`/settings/account/security/${mockId}/`);
   });
 });
